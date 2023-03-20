@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { addLink } from '../services/firebase/firebase';
+	import type { LinkDoc } from '../services/firebase/types';
+	import Recents from './Recents.svelte';
 
 	const enum Status {
 		Idle,
@@ -10,7 +12,8 @@
 
 	let status: Status = Status.Idle;
 	let inputVal: string = '';
-	let outputVal: string[] = [];
+
+	let history: LinkDoc[] = [];
 
 	$: msg =
 		status === Status.Loading
@@ -21,15 +24,16 @@
 			? 'Something went wrong!'
 			: '';
 
-	const handleSubmit = async () =>
+	$: handleSubmit = async () =>
 		addLink(inputVal)
 			.then((res) => {
 				status = Status.Success;
-
+				history.push({
+					url: inputVal,
+					short: res
+				});
+				history = [...history];
 				inputVal = '';
-
-				outputVal.push(res);
-				outputVal = [...outputVal];
 			})
 			.catch((err) => {
 				status = Status.Error;
@@ -38,11 +42,14 @@
 			});
 </script>
 
-<form class="wrapper" on:submit|preventDefault|once={handleSubmit}>
+<form class="wrapper" on:submit|preventDefault={handleSubmit}>
 	<input bind:value={inputVal} type="text" placeholder="Enter a link to shorten" />
 	<button type="submit">Submit</button>
 </form>
+
 <p>{msg}</p>
+
+<Recents links={history} />
 
 <style>
 	.wrapper {
@@ -70,6 +77,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		color: var(--var-color-grey);
 		border: 1.5px solid var(--var-color-white);
 		border-radius: 15px;
 		margin: 1rem 0;

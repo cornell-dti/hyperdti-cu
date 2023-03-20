@@ -1,5 +1,5 @@
 <script>
-	import Input from './Input.svelte';
+	import Inputs from './Inputs.svelte';
 
 	const title = 'Hyper';
 </script>
@@ -12,7 +12,7 @@
 <section>
 	<h1>Welcome to {title}</h1>
 	<p>The Design and Tech Initiative <b>@</b> Cornell University</p>
-	<Input />
+	<Inputs />
 </section>
 
 <style>
