@@ -21,7 +21,7 @@
 		{#each links as { longUrl, shortUrl, short }}
 			<div class="row">
 				<p class="left"><a href={longUrl}>{longUrl}</a></p>
-				<p class="right"><a href={longUrl}>{getDomain(shortUrl) + '/' + short}</a></p>
+				<p class="right"><a href={shortUrl}>{getDomain(shortUrl) + '/' + short}</a></p>
 				<p
 					class="icon-wrapper"
 					on:click|preventDefault={() => navigator.clipboard.writeText(shortUrl)}
@@ -51,6 +51,12 @@
 		overflow: scroll;
 	}
 
+	@media (max-width: 768px) {
+		div.wrapper {
+			width: calc(100vw - 1.5rem);
+		}
+	}
+
 	.no-content {
 		color: var(--var-color-grey);
 	}
@@ -71,6 +77,17 @@
 		overflow-x: scroll;
 		overflow-y: hidden;
 		white-space: nowrap;
+	}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.row p::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.row p {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 	}
 
 	.left {

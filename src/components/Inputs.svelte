@@ -1,31 +1,15 @@
 <script lang="ts">
+	import { Status } from '$lib/types';
+	import { getDomain, pathToUrl } from '$lib/util';
 	import { addLink } from '../services/firebase/firebase';
 	import type { LinkDoc } from '../services/firebase/types';
+	import Message from './Message.svelte';
 	import Recents from './Recents.svelte';
-
-	const enum Status {
-		Idle,
-		Loading,
-		Success,
-		Error,
-		Invalid
-	}
 
 	let status: Status = Status.Idle;
 	let inputVal: string = '';
 
 	let history: LinkDoc[] = [];
-
-	$: msg =
-		status === Status.Loading
-			? 'Loading...'
-			: status === Status.Error
-			? 'Something went wrong!'
-			: status === Status.Success
-			? 'Success!'
-			: status === Status.Invalid
-			? 'Invalid URL'
-			: '';
 
 	const handleSubmit = async () => {
 		status = Status.Loading;
@@ -37,6 +21,7 @@
 					short: res
 				});
 				history = [...history];
+				navigator.clipboard.writeText(pathToUrl(res, getDomain(window.location.href)));
 				inputVal = '';
 			})
 			.catch((err) => {
@@ -56,7 +41,7 @@
 	<button type="submit">Submit</button>
 </form>
 
-<p>{msg}</p>
+<Message {status} />
 
 {#if history.length > 0}
 	<Recents props={history} />

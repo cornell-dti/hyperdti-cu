@@ -9,9 +9,8 @@
 	<p>
 		This is a simple Hyperlink shortener and redirect hub for the <a
 			href="https://www.cornelldti.org/">Cornell Design and Tech Initiative</a
-		>. It is built using <a href="https://svelte.dev">Svelte</a> and
-		<a href="https://svelte.dev">SvelteKit</a>, as well as
-		<a href="https://firebase.google.com">Firebase</a> for Firebase Functions and Cloud Firestore.
+		>. It is built using <a href="https://svelte.dev">SvelteKit</a>, as well as
+		<a href="https://firebase.google.com">Firebase</a> for Cloud Firestore.
 	</p>
 
 	<p>
