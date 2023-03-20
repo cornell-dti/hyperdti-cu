@@ -9,6 +9,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
  * @param url - The URL to get the domain from
  */
 const getDomain = (url: string): string => {
+	if (url.includes('localhost')) return 'localhost:5173';
 	const domain = new URL(url).hostname;
 	return domain.startsWith('www.') ? domain.slice(4) : domain;
 };
@@ -20,6 +21,7 @@ const getDomain = (url: string): string => {
  * @returns The full URL
  */
 const pathToUrl = (path: string, baseUrl: string): string => {
+	if (baseUrl.includes('localhost')) return `http://localhost:5173/${path}`;
 	const url = new URL(path, baseUrl);
 	return url.href;
 };

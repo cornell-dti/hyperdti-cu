@@ -8,7 +8,7 @@
 
 	$: links = props.map(({ url, short }) => ({
 		longUrl: url,
-		shortUrl: pathToUrl(short, base_url),
+		shortUrl: pathToUrl(short, getDomain(window.location.href)),
 		short: short
 	}));
 </script>
