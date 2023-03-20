@@ -5,9 +5,7 @@ import { doc, setDoc } from 'firebase/firestore';
 
 // Import the functions you need from the SDKs you need
 import { hash, validateUrl } from '$lib/util';
-import { getAnalytics } from 'firebase/analytics';
 import { getDocs, getFirestore, query, where } from 'firebase/firestore';
-import { getFunctions } from 'firebase/functions';
 import { firebaseRef, type LinkDoc } from './types';
 
 // Initialize Firebase
