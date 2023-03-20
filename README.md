@@ -1,38 +1,23 @@
-# create-svelte
+# HyperDTI
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A simple URL shortener written in [SvelteKit](https://kit.svelte.dev/), built on [Firebase](https://firebase.google.com/), and deployed on [Vercel](https://vercel.com/).
 
-## Creating a project
+Visit at [hypterdt.in](https://hyperdt.in).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Create Short URLs that are automatically copied to your clipboard upon generation.
+- View a list of all your recently-created short URLs; click on any of them to copy it to your clipboard.
+- View a list of all short URLs created across DTI, and click on any of them to copy it to your clipboard.
+- URL Validation upon form submission.
+- It looks cool.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Want to Contribute?
 
-## Developing
+I built this in 24 hours (Sunday, Mar 19th). I would be wholly unsurprised by the presence of bugs.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Please! Open an issue or a PR if you find any bugs or have any suggestions for improvements.
 
-```bash
-npm run dev
+## License
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+MIT, Open-Source
