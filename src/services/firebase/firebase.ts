@@ -1,32 +1,20 @@
-// Import Svelte store functions to hold Firebase context
-import { readable, writable, type Subscriber } from 'svelte/store';
-
 // Import Firebase Config
 import firebaseConfig from '$lib/configs/firebase';
 import { initializeApp } from 'firebase/app';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 
 // Import the functions you need from the SDKs you need
+import { hash, validateUrl } from '$lib/util';
 import { getAnalytics } from 'firebase/analytics';
-import {
-	getDocs,
-	getFirestore,
-	query,
-	QueryDocumentSnapshot,
-	where,
-	type DocumentData
-} from 'firebase/firestore';
+import { getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 import { firebaseRef, type LinkDoc } from './types';
-import { hash, validateUrl } from '$lib/util';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // The Firebase SDK
-const analytics = getAnalytics(app);
 const db = getFirestore(app);
-const functions = getFunctions(app);
 
 // ========== Functions ==========
 
@@ -115,4 +103,18 @@ const getLinkFromShort = async (short: string): Promise<string> => {
 	return querySnapshot.docs[0].data().url;
 };
 
-export { addLink, getLinkFromShort };
+/**
+ * Get all links from the links collection
+ * @returns An array of all links in the links collection, sorted by timestamp
+ * 					(oldest first).
+ */
+const getAllLinks = async (): Promise<LinkDoc[]> => {
+	const querySnapshot = await getDocs(linksRef);
+	const docList = querySnapshot.docs.map((doc) => doc.data());
+	const sortedDocList = docList.sort((a, b) =>
+		a.timestamp && b.timestamp ? a.timestamp - b.timestamp : 0
+	);
+	return sortedDocList;
+};
+
+export { addLink, getLinkFromShort, getAllLinks };

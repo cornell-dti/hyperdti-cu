@@ -10,8 +10,11 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
  */
 const getDomain = (url: string): string => {
 	if (url.includes('localhost')) return 'localhost:5173';
-	const domain = new URL(url).hostname;
-	return domain.startsWith('www.') ? domain.slice(4) : domain;
+	const domain = url
+		.substring(url.indexOf('://') + 3)
+		.replace('www.', '')
+		.split('/')[0];
+	return domain;
 };
 
 /**
@@ -20,24 +23,16 @@ const getDomain = (url: string): string => {
  * @param baseUrl - The base URL to use
  * @returns The full URL
  */
-const pathToUrl = (path: string, baseUrl: string): string => {
-	if (baseUrl.includes('localhost')) return `http://localhost:5173/${path}`;
-	const url = new URL(path, baseUrl);
-	return url.href;
-};
+const pathToUrl = (path: string, baseUrl: string): string => `http://${baseUrl}/${path}`;
 
 /**
  * Validate a URL is actually a URL.
  * @param url - The URL to validate
  */
-const validateUrl = (url: string): boolean => {
-	try {
-		new URL(url);
-		return true;
-	} catch (e) {
-		return false;
-	}
-};
+const validateUrl = (url: string): boolean =>
+	/^(http(s):\/\/.)[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/g.test(
+		url
+	);
 
 /**
  * Short hash a string into a 6-character string.
@@ -47,16 +42,8 @@ const hash = (str: string): string =>
 	Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
 
 /**
- * Merge two arrays without duplicates using a custom comparator.
+ * Get the current exact time in milliseconds.
  */
-const mergeArrays = <T>(arr1: T[], arr2: T[], comparator: (a: T, b: T) => boolean): T[] => {
-	const merged = [...arr1];
-	for (const item of arr2) {
-		if (!merged.some((i) => comparator(i, item))) {
-			merged.push(item);
-		}
-	}
-	return merged;
-};
+const getTime = (): number => new Date().getTime();
 
-export { sleep, getDomain, hash, validateUrl, pathToUrl };
+export { sleep, getDomain, hash, validateUrl, pathToUrl, getTime };

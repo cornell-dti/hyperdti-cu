@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { validateUrl } from '$lib/util';
 	import { addLink } from '../services/firebase/firebase';
 	import type { LinkDoc } from '../services/firebase/types';
 	import Recents from './Recents.svelte';
@@ -59,7 +58,9 @@
 
 <p>{msg}</p>
 
-<Recents props={history} />
+{#if history.length > 0}
+	<Recents props={history} />
+{/if}
 
 <style>
 	.wrapper {

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base_url } from '$lib/configs/setup';
 	import { getDomain, pathToUrl } from '$lib/util';
 	import type { LinkDoc } from '../services/firebase/types';
 	import copy from '$lib/images/copy.png';
@@ -16,7 +15,7 @@
 <div class="wrapper">
 	{#if links.length === 0}
 		<div class="no-content">
-			<p>No recent links</p>
+			<p>No links yet.</p>
 		</div>
 	{:else}
 		{#each links as { longUrl, shortUrl, short }}
@@ -36,17 +35,20 @@
 </div>
 
 <style>
-	.wrapper {
+	div.wrapper {
 		display: flex;
 		flex-direction: column-reverse;
-		border-radius: 15px;
-		height: clamp(2rem, 25vh, 30rem);
-		width: clamp(10rem, 50vw, 30rem);
-		background-color: #373737;
-		box-shadow: inset 0px 10px 30px -10px rgba(0, 0, 0, 0.35);
-		overflow-y: scroll;
 		align-items: center;
 		justify-content: start;
+
+		border-radius: 15px;
+		height: clamp(10rem, fit-content, 30rem);
+		width: clamp(10rem, 50vw, 30rem);
+
+		background-color: #373737;
+		box-shadow: inset 0px 10px 30px -10px rgba(0, 0, 0, 0.35);
+
+		overflow: scroll;
 	}
 
 	.no-content {

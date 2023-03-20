@@ -1,5 +1,5 @@
 <footer>
-	<p>HyperDTI-CU is a project by <a href="https://www.cornelldti.org/">Cornell DTI</a></p>
+	<p>&copy; 2023 HyperDTI-CU | <a href="https://www.cornelldti.org/">Cornell DTI</a></p>
 </footer>
 
 <style>

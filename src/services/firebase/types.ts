@@ -1,3 +1,4 @@
+import { getTime } from '$lib/util';
 import {
 	collection,
 	Firestore,
@@ -11,13 +12,19 @@ import {
 type LinkDoc = {
 	url: string;
 	short: string;
+	timestamp?: number;
 };
 
 /**
  * Ensures types are cast to generic type T when inputting and outputting data from Firebase.
  */
 const firebaseTypeEnforcer = <T>() => ({
-	toFirestore: (data: T) => data,
+	toFirestore: (data: T) => {
+		return {
+			...data,
+			timestamp: getTime()
+		};
+	},
 	fromFirestore: (snap: QueryDocumentSnapshot<DocumentData>) => snap.data() as T
 });
 
