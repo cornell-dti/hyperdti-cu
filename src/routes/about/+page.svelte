@@ -3,24 +3,28 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-	<h1>About this app</h1>
+<div class="about-column">
+	<h1>About HyperDTI</h1>
 
 	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
-
-	<pre>npm create svelte@latest</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		This is a simple Hyperlink shortener and redirect hub for the <a
+			href="https://www.cornelldti.org/">Cornell Design and Tech Initiative</a
+		>. It is built using <a href="https://svelte.dev">Svelte</a> and
+		<a href="https://svelte.dev">SvelteKit</a>, as well as
+		<a href="https://firebase.google.com">Firebase</a> for Firebase Functions and Cloud Firestore.
 	</p>
 
 	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
+		Created by <a href="https://danielwei.me/">Daniel Wei</a>.
 	</p>
 </div>
+
+<style>
+	.about-column {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: clamp(300px, 50%, 600px);
+	}
+</style>

@@ -31,5 +31,11 @@
 		"vite": "^4.0.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@fontsource/poppins": "^4.5.10",
+		"firebase": "^9.18.0",
+		"rxfire": "^6.0.3",
+		"rxjs": "^7.8.0"
+	}
 }
