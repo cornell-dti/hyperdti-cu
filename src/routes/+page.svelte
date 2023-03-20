@@ -1,5 +1,5 @@
 <script>
-	import Inputs from './Inputs.svelte';
+	import Inputs from '../components/Inputs.svelte';
 
 	const title = 'Hyper';
 </script>

@@ -18,6 +18,7 @@ import {
 } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 import { firebaseRef, type LinkDoc } from './types';
+import { hash, validateUrl } from '$lib/util';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -33,12 +34,47 @@ const functions = getFunctions(app);
 const linksRef = firebaseRef<LinkDoc>('links', db);
 
 /**
+ * Checks if the link is already in the links collection.
+ * @param link The link to check.
+ */
+const linkExists = async (link: string): Promise<boolean> => {
+	const q = query(linksRef, where('url', '==', link));
+	const querySnapshot = await getDocs(q);
+	return !querySnapshot.empty;
+};
+
+/**
+ * Checks if the short ID is already in the links collection.
+ * @param short The short ID to check.
+ */
+const shortExists = async (short: string): Promise<boolean> => {
+	const q = query(linksRef, where('short', '==', short));
+	const querySnapshot = await getDocs(q);
+	return !querySnapshot.empty;
+};
+
+/**
  * Adds a link to the links collection, and returns the shortened version of the link.
  * @param link The link to add to the links collection.
  */
 const addLink = async (link: string): Promise<string> => {
-	const short: string =
-		Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5); // TODO: replace this with a call to a Firebase Function
+	// if the link isn't valid, throw an error
+	if (!validateUrl(link)) {
+		throw new Error(`INVALID_LINK`);
+	}
+
+	// if the link already exists, return the shortened version of the link
+	if (await linkExists(link)) {
+		return await getShortFromLink(link);
+	}
+
+	// if the short ID already exists, generate a new one
+	let short = '';
+	do {
+		short = hash(link);
+	} while (await shortExists(short));
+
+	// add the link to the links collection
 	await setDoc(doc(linksRef, short), {
 		url: link,
 		short: short
@@ -51,7 +87,7 @@ const addLink = async (link: string): Promise<string> => {
  * @param link The link which you want to find the shortened version of.
  */
 const getShortFromLink = async (link: string): Promise<string> => {
-	const q = query(linksRef, where('link', '==', link));
+	const q = query(linksRef, where('url', '==', link));
 	const querySnapshot = await getDocs(q);
 
 	if (querySnapshot.empty) {
@@ -79,4 +115,4 @@ const getLinkFromShort = async (short: string): Promise<string> => {
 	return querySnapshot.docs[0].data().url;
 };
 
-export { addLink, getShortFromLink, getLinkFromShort };
+export { addLink, getLinkFromShort };

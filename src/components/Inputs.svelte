@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { validateUrl } from '$lib/util';
 	import { addLink } from '../services/firebase/firebase';
 	import type { LinkDoc } from '../services/firebase/types';
 	import Recents from './Recents.svelte';
@@ -7,7 +8,8 @@
 		Idle,
 		Loading,
 		Success,
-		Error
+		Error,
+		Invalid
 	}
 
 	let status: Status = Status.Idle;
@@ -18,13 +20,16 @@
 	$: msg =
 		status === Status.Loading
 			? 'Loading...'
-			: status === Status.Success
-			? 'Success!'
 			: status === Status.Error
 			? 'Something went wrong!'
+			: status === Status.Success
+			? 'Success!'
+			: status === Status.Invalid
+			? 'Invalid URL'
 			: '';
 
-	$: handleSubmit = async () =>
+	const handleSubmit = async () => {
+		status = Status.Loading;
 		addLink(inputVal)
 			.then((res) => {
 				status = Status.Success;
@@ -36,10 +41,15 @@
 				inputVal = '';
 			})
 			.catch((err) => {
-				status = Status.Error;
+				if (err.message === 'INVALID_LINK') {
+					status = Status.Invalid;
+				} else {
+					status = Status.Error;
+				}
 
 				console.log(err);
 			});
+	};
 </script>
 
 <form class="wrapper" on:submit|preventDefault={handleSubmit}>
@@ -49,7 +59,7 @@
 
 <p>{msg}</p>
 
-<Recents links={history} />
+<Recents props={history} />
 
 <style>
 	.wrapper {

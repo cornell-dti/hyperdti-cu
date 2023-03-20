@@ -4,7 +4,7 @@
 	import loadingPic from '$lib/images/dtilogo-circle.png';
 	import { sleep } from '$lib/util';
 	import { onMount } from 'svelte';
-	import { getLinkFromShort } from '../../../services/firebase/firebase';
+	import { getLinkFromShort } from '../../services/firebase/firebase';
 
 	// get data from URL
 	export let data;
