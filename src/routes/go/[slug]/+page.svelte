@@ -1,22 +1,19 @@
 <script lang="ts">
+	// imports
 	import { goto } from '$app/navigation';
-	export let data;
 	import loadingPic from '$lib/images/dtilogo-circle.png';
 	import { sleep } from '$lib/util';
+	import { onMount } from 'svelte';
+	import { getLinkFromShort } from '../../../services/firebase/firebase';
+
+	// get data from URL
+	export let data;
 
 	// on mount, we wait 1.5 seconds, then redirect to the link
-	import { onMount } from 'svelte';
-	import { getLinkFromShort } from '../../../stores/firebase/firebase';
-
 	onMount(async () => {
-		getLinkFromShort(data.short)
-			.then(async (link) => {
-				window.location.href = link;
-			})
-			.catch(async (err) => {
-				console.log(err);
-				goto('/404');
-			});
+		const link = await getLinkFromShort(data.short);
+		await sleep(1500);
+		window.location.href = link;
 	});
 </script>
 

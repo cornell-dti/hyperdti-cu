@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { addLink } from '../stores/firebase/firebase';
+	import { addLink } from '../services/firebase/firebase';
 
 	const enum Status {
 		Idle,

@@ -54,12 +54,11 @@ const getShortFromLink = async (link: string): Promise<string> => {
 	const q = query(linksRef, where('link', '==', link));
 	const querySnapshot = await getDocs(q);
 
-	return new Promise((resolve, reject) => {
-		if (querySnapshot.empty) {
-			reject(new Error(`Link ${link} not found.`));
-		}
-		resolve(querySnapshot.docs[0].data().short);
-	});
+	if (querySnapshot.empty) {
+		throw new Error(`Link ${link} not found.`);
+	}
+
+	return querySnapshot.docs[0].data().short;
 };
 
 /**
@@ -70,16 +69,14 @@ const getLinkFromShort = async (short: string): Promise<string> => {
 	const q = query(linksRef, where('short', '==', short));
 	const querySnapshot = await getDocs(q);
 
-	return new Promise((resolve, reject) => {
-		if (querySnapshot.empty) {
-			reject(new Error(`Link ${short} not found.`));
-		}
-		if (querySnapshot.size > 1) {
-			reject(new Error(`Multiple links found for ${short}.`));
-		}
+	if (querySnapshot.empty) {
+		throw new Error(`Link ${short} not found.`);
+	}
+	if (querySnapshot.size > 1) {
+		throw new Error(`Multiple links found for ${short}.`);
+	}
 
-		resolve(querySnapshot.docs[0].data().url);
-	});
+	return querySnapshot.docs[0].data().url;
 };
 
 export { addLink, getShortFromLink, getLinkFromShort };
