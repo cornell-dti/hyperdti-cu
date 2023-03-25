@@ -46,4 +46,11 @@
 		justify-content: center;
 		gap: 3rem;
 	}
+
+	@media (max-width: 768px) {
+		div {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
 </style>

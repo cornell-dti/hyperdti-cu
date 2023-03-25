@@ -30,7 +30,7 @@
 
 <div class="body">
 	<Temporary duration={1000} {trigger}>
-		<img src={loadingPic} alt="Redirecting..." width="140px" />
+		<img src={loadingPic} alt="Redirecting..." />
 		<h1>Redirecting...</h1>
 	</Temporary>
 </div>
@@ -51,7 +51,21 @@
 		height: 100%;
 	}
 
+	img {
+		width: 140px;
+	}
+
 	h1 {
 		font-size: 4rem;
+	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 2rem;
+		}
+
+		img {
+			width: 100px;
+		}
 	}
 </style>
