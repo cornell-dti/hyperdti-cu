@@ -18,6 +18,12 @@ I built this in 24 hours (Sunday, Mar 19th). I would be wholly unsurprised by th
 
 Please! Open an issue or a PR if you find any bugs or have any suggestions for improvements.
 
+## Roadmap
+
+- [ ] Protection against possible attacks by bots.
+- [ ] Authentication for DTI members -- especially to view the Hub.
+- [ ] Password gate should redirect-- not hide.
+
 ## License
 
 [MIT](LICENSE)
