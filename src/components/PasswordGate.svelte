@@ -1,26 +1,27 @@
 <!-- PasswordGate.svelte -->
-<script>
+<script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 
-	const PASSWORD = 'iknowdawei';
+	export let pass: string;
+
 	let inputPassword = '';
 	let isUnlocked = false;
 
 	function checkPassword() {
-		if (inputPassword === PASSWORD) {
+		if (inputPassword === pass) {
 			isUnlocked = true;
 		} else {
 			alert('Incorrect password. Please try again.');
 		}
 	}
 
-	onMount(() => {
-		document.body.style.overflow = 'hidden';
-	});
+	// onMount(() => {
+	// 	document.body.style.visibility = 'hidden';
+	// });
 
-	onDestroy(() => {
-		document.body.style.overflow = 'auto';
-	});
+	// onDestroy(() => {
+	// 	document.body.style.visibility = 'visible';
+	// });
 </script>
 
 {#if !isUnlocked}
@@ -51,6 +52,7 @@
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(15px);
+		-webkit-backdrop-filter: blur(15px);
 		display: flex;
 		justify-content: center;
 		align-items: center;

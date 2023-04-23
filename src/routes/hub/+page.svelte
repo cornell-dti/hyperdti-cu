@@ -5,6 +5,10 @@
 	import { getAllLinks } from '../../services/firebase/firebase';
 	import PasswordGate from '../../components/PasswordGate.svelte';
 
+	export let data: {
+		pass: string;
+	};
+
 	// links to display
 	let links: LinkDoc[] = [];
 
@@ -19,7 +23,7 @@
 	<meta name="description" content="Hyper home page" />
 </svelte:head>
 
-<PasswordGate />
+<PasswordGate pass={data.pass} />
 
 <section>
 	<h1>All Links</h1>
