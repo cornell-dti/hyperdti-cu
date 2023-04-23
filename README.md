@@ -7,10 +7,10 @@ Visit at [hypterdt.in](https://hyperdt.in).
 ## Features
 
 - Create Short URLs that are automatically copied to your clipboard upon generation.
+- Create custom aliases for your URLs, if you want.
 - View a list of all your recently-created short URLs; click on any of them to copy it to your clipboard.
-- View a list of all short URLs created across DTI, and click on any of them to copy it to your clipboard.
+- (Password-protected!) View a list of all short URLs created across DTI, and click on any of them to copy it to your clipboard.
 - URL Validation upon form submission.
-- It looks cool.
 
 ## Want to Contribute?
 
@@ -20,4 +20,4 @@ Please! Open an issue or a PR if you find any bugs or have any suggestions for i
 
 ## License
 
-MIT, Open-Source
+[MIT](LICENSE)
