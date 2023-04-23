@@ -5,6 +5,8 @@
 	--var-color-grey: #4a4a4a;
 	--var-color-red: #ff324a;
 	--var-color-white: #ffffff;
+	--var-border-radius: 15px;
+	--var-std-transition: all 0.2s ease-in-out;
 
 	background-color: var(--var-color-grey);
 	color: var(--var-color-white);

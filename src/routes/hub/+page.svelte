@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import type { LinkDoc } from '../../services/firebase/types';
 	import { getAllLinks } from '../../services/firebase/firebase';
+	import PasswordGate from '../../components/PasswordGate.svelte';
 
 	// links to display
 	let links: LinkDoc[] = [];
@@ -17,6 +18,8 @@
 	<title>Home</title>
 	<meta name="description" content="Hyper home page" />
 </svelte:head>
+
+<PasswordGate />
 
 <section>
 	<h1>All Links</h1>

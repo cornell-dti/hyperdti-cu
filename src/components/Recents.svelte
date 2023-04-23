@@ -39,9 +39,10 @@
 		display: flex;
 		flex-direction: column-reverse;
 		align-items: center;
-		justify-content: start;
+		justify-content: flex-start;
+		flex-wrap: no-wrap;
 
-		border-radius: 15px;
+		border-radius: var(--var-border-radius);
 		height: clamp(10rem, fit-content, 30rem);
 		width: clamp(10rem, 50vw, 30rem);
 
@@ -49,6 +50,8 @@
 		box-shadow: inset 0px 10px 30px -10px rgba(0, 0, 0, 0.35);
 
 		overflow: scroll;
+
+		margin-top: 2rem;
 	}
 
 	@media (max-width: 768px) {

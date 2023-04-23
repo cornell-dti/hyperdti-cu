@@ -13,6 +13,10 @@
 			? 'Copied to Clipboard!'
 			: status === Status.Invalid
 			? 'Invalid URL'
+			: status === Status.CustomShortExists
+			? 'Someone already took that URL!'
+			: status === Status.CustomShortIsSomethingElse
+			? 'That URL is already aliased to something else!'
 			: '';
 </script>
 
@@ -28,7 +32,7 @@
 		width: fit-content;
 		padding: 0.25rem 1.25rem;
 		background-color: var(--var-color-red);
-		border-radius: 15px;
+		border-radius: var(--var-border-radius);
 		font-size: 0.75rem;
 		box-shadow: 0px 10px 35px 5px rgba(0, 0, 0, 0.25);
 	}

@@ -3,7 +3,9 @@ const enum Status {
 	Loading,
 	Success,
 	Error,
-	Invalid
+	Invalid,
+	CustomShortExists,
+	CustomShortIsSomethingElse
 }
 
 export { Status };

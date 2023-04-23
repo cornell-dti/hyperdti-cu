@@ -43,28 +43,43 @@ const shortExists = async (short: string): Promise<boolean> => {
  * Adds a link to the links collection, and returns the shortened version of the link.
  * @param link The link to add to the links collection.
  */
-const addLink = async (link: string): Promise<string> => {
-	// if the link isn't valid, throw an error
+const addLink = async (link: string, customShort?: string): Promise<string> => {
+	// 1. if the link isn't valid, throw an error
 	if (!validateUrl(link)) {
 		throw new Error(`INVALID_LINK`);
 	}
 
-	// if the link already exists, return the shortened version of the link
-	if (await linkExists(link)) {
+	// 3. if the link already exists, return the shortened version of the link instead of adding it again
+	const existsAlr = await linkExists(link);
+	const isShort = customShort ? true : false;
+	if (existsAlr && !isShort) {
 		return await getShortFromLink(link);
+	} else if (existsAlr && isShort) {
+		throw new Error(`ALREADY_ALIASED`);
 	}
 
-	// if the short ID already exists, generate a new one
+	// 2. generate a short for the link, or throw an error if the custom one they provided already exists
 	let short = '';
-	do {
-		short = hash(link);
-	} while (await shortExists(short));
+	if (customShort) {
+		// if a custom short ID is provided, use that
+		if (await shortExists(customShort)) {
+			// as long as it doesn't already exist
+			throw new Error(`CUSTOM_SHORT_EXISTS`);
+		}
+		short = customShort;
+	} else {
+		// otherwise, generate a new one
+		do {
+			short = hash(link);
+		} while (await shortExists(short)); // as long as it doesn't already exist
+	}
 
-	// add the link to the links collection
+	// 4. add the link to the links collection
 	await setDoc(doc(linksRef, short), {
 		url: link,
 		short: short
 	});
+
 	return short;
 };
 
