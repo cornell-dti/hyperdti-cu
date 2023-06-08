@@ -1,6 +1,6 @@
 # HyperDTI
 
-A simple URL shortener written in [SvelteKit](https://kit.svelte.dev/), built on [Firebase](https://firebase.google.com/), and deployed on [Vercel](https://vercel.com/).
+A simple URL shortener written in TypeScript, built with [SvelteKit](https://kit.svelte.dev/), built on [Firebase](https://firebase.google.com/), and deployed on [Vercel](https://vercel.com/).
 
 Visit at [hyperdt.in](https://hyperdt.in).
 
@@ -17,9 +17,8 @@ I built this in 24 hours (Sunday, Mar 19th). I would be wholly unsurprised by th
 
 Please! Open an issue or a PR if you find any bugs or have any suggestions for improvements.
 
-## Roadmap
+## Tentative Roadmap
 
-- [ ] Protection against possible attacks by bots.
 - [ ] Authentication for DTI members + a centralized Hub for all DTI-related links.
 
 ## License
