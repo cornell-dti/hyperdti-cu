@@ -19,7 +19,7 @@
 </svelte:head>
 
 <section>
-	<img alt="Hyper Logo" src={logo} width={300} />
+	<h1>HyperDTI</h1>
 	<div class="tabrow">
 		<div
 			class={'tab ' + (mode === 'simple' ? ' activetab' : 'tab')}

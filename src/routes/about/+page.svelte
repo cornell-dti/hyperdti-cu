@@ -9,8 +9,8 @@
 	<p>
 		This is a simple Hyperlink shortener and redirect hub for the <a
 			href="https://www.cornelldti.org/">Cornell Design and Tech Initiative</a
-		>. It is built using <a href="https://svelte.dev">SvelteKit</a>, uses
-		<a href="https://firebase.google.com">Firebase</a> as a database, and is deployed on
+		>. Analytics are managed on <a href="https://posthog.com/">PostHog</a>. Technologies are built
+		on the FKIT stack (Firebase, TypeScript, SvelteKit, Vite). It is deployed on
 		<a href="https://vercel.com">Vercel</a>.
 	</p>
 
