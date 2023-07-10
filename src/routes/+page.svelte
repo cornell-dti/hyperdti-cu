@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Inputs from '../components/Inputs.svelte';
-	import logo from '$lib/images/hyperdtilogo.png';
 	import type { Mode } from '../types/mode';
 
 	let mode: Mode = 'simple';
