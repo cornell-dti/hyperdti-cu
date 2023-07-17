@@ -27,4 +27,8 @@
 		justify-content: center;
 		width: clamp(300px, 50%, 600px);
 	}
+
+	p {
+		text-align: center;
+	}
 </style>
