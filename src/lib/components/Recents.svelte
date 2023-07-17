@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getDomain, pathToUrl } from '$lib/util';
-	import type { LinkDoc } from '../services/firebase/types';
-	import copy from '$lib/images/copy.png';
+	import type { LinkDoc } from '$lib/firebase/types';
+	import copy from '$lib/assets/copy.png';
 
 	export let props: LinkDoc[];
 

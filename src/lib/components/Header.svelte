@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/dtilogo-white-small.png';
-	import github from '$lib/images/github.png';
+	import logo from '$lib/assets/dtilogo-white-small.png';
+	import github from '$lib/assets/github.png';
 </script>
 
 <header>

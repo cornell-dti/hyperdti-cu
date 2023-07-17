@@ -1,7 +1,7 @@
 <script>
-	import Analytics from '../components/Analytics.svelte';
-	import Footer from '../components/Footer.svelte';
-	import Header from '../components/Header.svelte';
+	import Analytics from '$lib/components/Analytics.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import './styles.css';
 </script>
 
