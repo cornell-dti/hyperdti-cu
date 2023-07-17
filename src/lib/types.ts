@@ -8,4 +8,6 @@ const enum Status {
 	CustomShortIsSomethingElse
 }
 
-export { Status };
+type Mode = 'simple' | 'advanced';
+
+export { Status, type Mode };

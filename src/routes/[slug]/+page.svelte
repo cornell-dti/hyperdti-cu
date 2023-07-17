@@ -52,11 +52,11 @@
 	}
 
 	img {
-		width: 140px;
+		width: 100px;
 	}
 
 	h1 {
-		font-size: 4rem;
+		font-size: 2rem;
 	}
 
 	@media (max-width: 768px) {

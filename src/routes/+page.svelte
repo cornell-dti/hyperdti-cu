@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Inputs from '../components/Inputs.svelte';
-	import type { Mode } from '../types/mode';
+	import type { Mode } from '../lib/types';
 
 	let mode: Mode = 'simple';
 

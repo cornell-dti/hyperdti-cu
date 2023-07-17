@@ -3,7 +3,7 @@
 	import { getDomain, pathToUrl } from '$lib/util';
 	import { addLink } from '../services/firebase/firebase';
 	import type { LinkDoc } from '../services/firebase/types';
-	import type { Mode } from '../types/mode';
+	import type { Mode } from '../lib/types';
 	import Message from './Message.svelte';
 	import Recents from './Recents.svelte';
 
