@@ -7,8 +7,8 @@
 	<h1>About HyperDTI</h1>
 
 	<p>
-		This is a simple Hyperlink shortener and redirect hub for the <a
-			href="https://www.cornelldti.org/">Cornell Design and Tech Initiative</a
+		This is a simple Hyperlink shortener and redirect hub for <a href="https://www.cornelldti.org/"
+			>Cornell Digital Tech & Innovation</a
 		>, built on the FKIT stack (Firebase and SvelteKit), with analytics on
 		<a href="https://posthog.com/">PostHog</a>
 		and deployed on <a href="https://vercel.com">Vercel</a>.
